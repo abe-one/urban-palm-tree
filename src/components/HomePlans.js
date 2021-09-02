@@ -1,15 +1,44 @@
 import React from "react";
 import { connect } from "react-redux";
 import { toggleSavedHomePlans } from "../utils/reduxStore/actions";
+import InfoCard from "./InfoCard";
 
 const HomePlans = ({ homePlans, toggleSavedHomePlans }) => {
   return (
-    <div>
-      Render array of Cards displaying HomePlan data
-      {homePlans.data.map((plan) => {
-        return <p key={plan.homePlanId}>{plan.name}</p>;
-      })}
-    </div>
+    <>
+      <h2>Home Plans</h2>
+      <div
+        style={{
+          display: "flex",
+        }}
+      >
+        {homePlans.data.map(
+          ({
+            homePlanId,
+            name,
+            numBeds,
+            numBaths,
+            sqft,
+            tags,
+            description,
+            image,
+            saved,
+          }) => {
+            return (
+              <InfoCard
+                key={homePlanId}
+                headerImg={image}
+                title={name}
+                details={null}
+                tags={tags}
+                description={description}
+                toggleStatus={saved}
+              />
+            );
+          }
+        )}
+      </div>
+    </>
   );
 };
 
