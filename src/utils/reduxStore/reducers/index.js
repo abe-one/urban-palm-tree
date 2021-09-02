@@ -62,11 +62,13 @@ export const reducer = (state = initialState, action) => {
 
     case TOGGLE_SAVED_HOME_PLANS:
       const targetIndex = action.payload;
+      const updatedHomePlans = state.homePlans.data.map((plan, index) =>
+        index === targetIndex ? { ...plan, saved: !plan.saved } : plan
+      );
+      debugger;
       return {
         ...state,
-        lots: state.homePlans.data.map((plan, index) =>
-          index === targetIndex ? { ...plan, saved: !plan.saved } : plan
-        ),
+        homePlans: { ...state.homePlans, data: updatedHomePlans },
       };
 
     case FETCH_COMBINATIONS_SUCCESS:

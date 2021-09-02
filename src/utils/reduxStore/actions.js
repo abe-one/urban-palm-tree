@@ -17,16 +17,16 @@ export const fetchLots = () => {
   return { type: FETCH_LOTS_SUCCESS, payload: lots };
 };
 
-export const toggleSavedLots = () => {
-  return { type: TOGGLE_SAVED_LOTS };
+export const toggleSavedLots = (index) => {
+  return { type: TOGGLE_SAVED_LOTS, payload: index };
 };
 export const fetchHomePlans = () => {
   const lots = API.getHomePlans();
   return { type: FETCH_HOME_PLANS_SUCCESS, payload: lots };
 };
 
-export const toggleSavedHomePlans = () => {
-  return { type: TOGGLE_SAVED_HOME_PLANS };
+export const toggleSavedHomePlans = (index) => {
+  return { type: TOGGLE_SAVED_HOME_PLANS, payload: index };
 };
 
 export const fetchCombinations = () => {

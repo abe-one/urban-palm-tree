@@ -13,17 +13,20 @@ const HomePlans = ({ homePlans, toggleSavedHomePlans }) => {
         }}
       >
         {homePlans.data.map(
-          ({
-            homePlanId,
-            name,
-            numBeds,
-            numBaths,
-            sqft,
-            tags,
-            description,
-            image,
-            saved,
-          }) => {
+          (
+            {
+              homePlanId,
+              name,
+              numBeds,
+              numBaths,
+              sqft,
+              tags,
+              description,
+              image,
+              saved,
+            },
+            index
+          ) => {
             return (
               <InfoCard
                 key={homePlanId}
@@ -32,7 +35,9 @@ const HomePlans = ({ homePlans, toggleSavedHomePlans }) => {
                 details={null}
                 tags={tags}
                 description={description}
-                toggleStatus={saved}
+                savedStatus={saved}
+                toggleSavedStatus={toggleSavedHomePlans}
+                index={index}
               />
             );
           }
