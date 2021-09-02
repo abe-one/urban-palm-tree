@@ -6,7 +6,7 @@ const InfoCard = ({
   details,
   tags,
   description,
-  status,
+  savedStatus,
   toggleSavedStatus,
   index,
 }) => {
@@ -32,7 +32,8 @@ const InfoCard = ({
             right: "0",
           }}
         >
-          🤍{/*TODO: Refactor w/ css variables */}
+          {savedStatus ? "❤️" : "🤍"}
+          {/*TODO: Refactor w/ css variables */}
         </button>
       </div>
 

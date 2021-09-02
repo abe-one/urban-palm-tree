@@ -37,11 +37,12 @@ export const reducer = (state = initialState, action) => {
 
     case TOGGLE_SAVED_LOTS: {
       const targetIndex = action.payload;
+      const updatedLots = state.lots.data.map((lot, index) =>
+        index === targetIndex ? { ...lot, saved: !lot.saved } : lot
+      );
       return {
         ...state,
-        lots: state.lots.data.map((lot, index) =>
-          index === targetIndex ? { ...lot, saved: !lot.saved } : lot
-        ),
+        lots: { ...state.lots, data: updatedLots },
       };
     }
 
@@ -65,7 +66,6 @@ export const reducer = (state = initialState, action) => {
       const updatedHomePlans = state.homePlans.data.map((plan, index) =>
         index === targetIndex ? { ...plan, saved: !plan.saved } : plan
       );
-      debugger;
       return {
         ...state,
         homePlans: { ...state.homePlans, data: updatedHomePlans },

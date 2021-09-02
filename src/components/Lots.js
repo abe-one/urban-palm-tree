@@ -11,19 +11,24 @@ const Lots = ({ lots, toggleSavedLots }) => {
           display: "flex",
         }}
       >
-        {lots.data.map(({ lotId, address, acres, description, image }) => {
-          const detailsString = `${address} \n ${acres} - ${
-            acres * 43_560
-          } sqft`;
-          return (
-            <InfoCard
-              key={lotId}
-              headerImg={image}
-              details={detailsString}
-              description={description}
-            />
-          );
-        })}
+        {lots.data.map(
+          ({ lotId, address, acres, description, image, saved }, index) => {
+            const detailsString = `${address} \n ${acres} - ${
+              acres * 43_560
+            } sqft`;
+            return (
+              <InfoCard
+                key={lotId}
+                headerImg={image}
+                details={detailsString}
+                description={description}
+                savedStatus={saved}
+                toggleSavedStatus={toggleSavedLots}
+                index={index}
+              />
+            );
+          }
+        )}
       </div>
     </>
   );
