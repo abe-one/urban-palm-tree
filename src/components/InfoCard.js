@@ -33,7 +33,6 @@ const InfoCard = ({
           }}
         >
           {savedStatus ? "❤️" : "🤍"}
-          {/*TODO: Refactor w/ css variables */}
         </button>
       </div>
 

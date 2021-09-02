@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { toggleSavedLots } from "../utils/reduxStore/actions";
 import InfoCard from "./InfoCard";
 const Lots = ({ lots, toggleSavedLots }) => {
+  const [displayAll, setDisplayAll] = useState(true);
+
   return (
     <>
-      <h2>Lots</h2>
+      <button onClick={() => setDisplayAll(!displayAll)}>
+        Show {displayAll ? "Saved" : "All"} Lots
+      </button>
       <div
         style={{
           display: "flex",
@@ -16,17 +20,21 @@ const Lots = ({ lots, toggleSavedLots }) => {
             const detailsString = `${address} \n ${acres} - ${
               acres * 43_560
             } sqft`;
-            return (
-              <InfoCard
-                key={lotId}
-                headerImg={image}
-                details={detailsString}
-                description={description}
-                savedStatus={saved}
-                toggleSavedStatus={toggleSavedLots}
-                index={index}
-              />
-            );
+            if (!displayAll && !saved) {
+              return null;
+            } else {
+              return (
+                <InfoCard
+                  key={lotId}
+                  headerImg={image}
+                  details={detailsString}
+                  description={description}
+                  savedStatus={saved}
+                  toggleSavedStatus={toggleSavedLots}
+                  index={index}
+                />
+              );
+            }
           }
         )}
       </div>
