@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Link, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 import HomePlans from "./components/HomePlans";
 import Lots from "./components/Lots";
+import {
+  fetchLots,
+  fetchHomePlans,
+  fetchCombinations,
+} from "./utils/reduxStore/actions";
 
-function App() {
+function App({ fetchLots, fetchHomePlans, fetchCombinations }) {
+  useEffect(() => {
+    fetchLots();
+    fetchHomePlans();
+    fetchCombinations();
+  }, [fetchLots, fetchHomePlans, fetchCombinations]);
+
   return (
     <div className="App">
       <header>
@@ -26,4 +38,6 @@ function App() {
   );
 }
 
-export default App;
+export default connect(null, { fetchLots, fetchHomePlans, fetchCombinations })(
+  App
+);

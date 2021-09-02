@@ -1,12 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { fetchLots, toggleSavedLots } from "../utils/reduxStore/actions";
+import { toggleSavedLots } from "../utils/reduxStore/actions";
 
-const Lots = ({ lots, fetchLots, toggleSavedLots }) => {
-  useEffect(() => {
-    fetchLots();
-  }, [fetchLots]);
-
+const Lots = ({ lots, toggleSavedLots }) => {
   return (
     <div>
       Render array of Cards displaying lot data
@@ -21,4 +17,4 @@ const mapStateToProps = (state) => {
   return { lots: state.lots };
 };
 
-export default connect(mapStateToProps, { fetchLots, toggleSavedLots })(Lots);
+export default connect(mapStateToProps, { toggleSavedLots })(Lots);
