@@ -27,12 +27,14 @@ const HomePlans = ({ homePlans, toggleSavedHomePlans }) => {
             },
             index
           ) => {
+            const detailsString = `${numBeds} bed(s) - ${numBaths} bath(s) - ${sqft} sqft`; //Todo: Conditional plurals on bed/bath
+
             return (
               <InfoCard
                 key={homePlanId}
                 headerImg={image}
                 title={name}
-                details={null}
+                details={detailsString}
                 tags={tags}
                 description={description}
                 savedStatus={saved}

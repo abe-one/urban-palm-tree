@@ -1,15 +1,31 @@
 import React from "react";
 import { connect } from "react-redux";
 import { toggleSavedLots } from "../utils/reduxStore/actions";
-
+import InfoCard from "./InfoCard";
 const Lots = ({ lots, toggleSavedLots }) => {
   return (
-    <div>
-      Render array of Cards displaying lot data
-      {lots.data.map((lot) => {
-        return <p key={lot.lotId}>{lot.description}</p>;
-      })}
-    </div>
+    <>
+      <h2>Lots</h2>
+      <div
+        style={{
+          display: "flex",
+        }}
+      >
+        {lots.data.map(({ lotId, address, acres, description, image }) => {
+          const detailsString = `${address} \n ${acres} - ${
+            acres * 43_560
+          } sqft`;
+          return (
+            <InfoCard
+              key={lotId}
+              headerImg={image}
+              details={detailsString}
+              description={description}
+            />
+          );
+        })}
+      </div>
+    </>
   );
 };
 

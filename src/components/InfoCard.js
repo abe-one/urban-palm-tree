@@ -38,6 +38,8 @@ const InfoCard = ({
 
       <h3>{title}</h3>
       <p>{details}</p>
+      {/*TODO: p tags for each line break */}
+
       <div className="tags">
         {tags?.map((tag, index) => {
           return <p key={index}>{tag}</p>;
@@ -45,6 +47,7 @@ const InfoCard = ({
       </div>
       <div className="description-text">
         <p>{description}</p>
+        {/*TODO: p tags for each line break */}
       </div>
     </div>
   );
