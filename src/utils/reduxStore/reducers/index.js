@@ -1,11 +1,21 @@
-import { FETCH_LOTS_SUCCESS, TOGGLE_SAVED_LOTS } from "../actions";
+import {
+  FETCH_LOTS_SUCCESS,
+  TOGGLE_SAVED_LOTS,
+  FETCH_HOME_PLANS_SUCCESS,
+  TOGGLE_SAVED_HOME_PLANS,
+  FETCH_COMBINATIONS_SUCCESS,
+} from "../actions";
+
+const initialFetchState = {
+  data: [],
+  apiCallStatus: "loading", // 3-state machine: "pending", "successful", "error"
+  errorMessage: "",
+};
 
 const initialState = {
-  errorMessage: "",
-  lots: {
-    data: [],
-    apiCallStatus: "loading", // 3-state machine: "pending", "successful", "error"
-  },
+  lots: initialFetchState,
+  homePlans: initialFetchState,
+  combinations: initialFetchState,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -17,16 +27,61 @@ export const reducer = (state = initialState, action) => {
       });
       return {
         ...state,
-        lots: { ...state.lots, data: fetchedLots },
+        lots: {
+          ...state.lots,
+          data: fetchedLots,
+          errorMessage: "",
+          apiCallStatus: "successful",
+        },
       };
 
-    case TOGGLE_SAVED_LOTS: // expected payload: lots array index
+    case TOGGLE_SAVED_LOTS: {
       const targetIndex = action.payload;
       return {
         ...state,
         lots: state.lots.data.map((lot, index) =>
           index === targetIndex ? { ...lot, saved: !lot.saved } : lot
         ),
+      };
+    }
+
+    case FETCH_HOME_PLANS_SUCCESS:
+      const fetchedPlans = action.payload.map((plan) => {
+        const fetchedPlan = { ...plan, saved: false };
+        return fetchedPlan;
+      });
+      return {
+        ...state,
+        homePlans: {
+          ...state.homePlans,
+          data: fetchedPlans,
+          errorMessage: "",
+          apiCallStatus: "successful",
+        },
+      };
+
+    case TOGGLE_SAVED_HOME_PLANS:
+      const targetIndex = action.payload;
+      return {
+        ...state,
+        lots: state.homePlans.data.map((plan, index) =>
+          index === targetIndex ? { ...plan, saved: !plan.saved } : plan
+        ),
+      };
+
+    case FETCH_COMBINATIONS_SUCCESS:
+      const fetchedCombinations = action.payload.map((combo) => {
+        const fetchedCombo = { ...combo, saved: false };
+        return fetchedCombo;
+      });
+      return {
+        ...state,
+        homeCombinations: {
+          ...state.homeCombinations,
+          data: fetchedCombinations,
+          errorMessage: "",
+          apiCallStatus: "successful",
+        },
       };
 
     default:
