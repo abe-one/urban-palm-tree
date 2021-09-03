@@ -2,17 +2,20 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import InfoCardModal from "./InfoCardModal";
 
-const InfoCard = ({
-  headerImg,
-  title,
-  details,
-  tags,
-  description,
-  savedStatus,
-  toggleSavedStatus,
-  index,
-  dataType, //TODO: Better naming convention
-}) => {
+const InfoCard = (props) => {
+  const {
+    key,
+    headerImg,
+    title,
+    details,
+    tags,
+    description,
+    savedStatus,
+    toggleSavedStatus,
+    index,
+    stateKey,
+    gridCard,
+  } = props;
   const { pathname: path, search: queries } = useLocation();
   const urlTitle = title.replace(/ /g, "-");
 
@@ -42,9 +45,14 @@ const InfoCard = ({
         </button>
       </div>
 
-      <Link to={`${path}?selected=${urlTitle}`}>
+      {gridCard ? (
+        <Link to={`${path}?selected=${urlTitle}`}>
+          <h3>{title}</h3>
+        </Link>
+      ) : (
         <h3>{title}</h3>
-      </Link>
+      )}
+
       <p>{details}</p>
       {/*TODO: p tags for each line break */}
 
@@ -57,8 +65,11 @@ const InfoCard = ({
         <p>{description}</p>
         {/*TODO: p tags for each line break */}
       </div>
-      {queries === `?selected=${urlTitle}` ? (
-        <InfoCardModal path={path} />
+
+      {gridCard ? (
+        queries === `?selected=${urlTitle}` ? (
+          <InfoCardModal path={path} primaryCardProps={props} />
+        ) : null
       ) : null}
     </div>
   );

@@ -37,7 +37,7 @@ const HomePlans = ({ homePlans, toggleSavedHomePlans }) => {
               return (
                 <InfoCard
                   key={homePlanId}
-                  dataType="homePlans"
+                  stateKey="homePlanId"
                   headerImg={image}
                   title={name}
                   details={detailsString}
@@ -46,6 +46,7 @@ const HomePlans = ({ homePlans, toggleSavedHomePlans }) => {
                   savedStatus={saved}
                   toggleSavedStatus={toggleSavedHomePlans}
                   index={index}
+                  gridCard={true}
                 />
               );
             }

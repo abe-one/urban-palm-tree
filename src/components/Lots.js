@@ -25,7 +25,7 @@ const Lots = ({ lots, toggleSavedLots }) => {
               return (
                 <InfoCard
                   key={lotId}
-                  dataType="lots"
+                  stateKey="lotId"
                   headerImg={image}
                   title={address}
                   details={detailsString}
@@ -33,6 +33,7 @@ const Lots = ({ lots, toggleSavedLots }) => {
                   savedStatus={saved}
                   toggleSavedStatus={toggleSavedLots}
                   index={index}
+                  gridCard={true}
                 />
               );
             }
