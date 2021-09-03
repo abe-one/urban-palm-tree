@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { Route, Link, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import HomePlans from "./components/HomePlans";
-import Lots from "./components/Lots";
+
 import {
   fetchLots,
   fetchHomePlans,

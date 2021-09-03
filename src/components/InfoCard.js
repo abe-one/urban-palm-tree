@@ -4,7 +4,6 @@ import InfoCardModal from "./InfoCardModal";
 
 const InfoCard = (props) => {
   const {
-    key,
     headerImg,
     title,
     details,
@@ -13,12 +12,12 @@ const InfoCard = (props) => {
     savedStatus,
     toggleSavedStatus,
     index,
-    stateKey,
     gridCard,
   } = props;
-  const { pathname: path, search: queries } = useLocation();
 
-  const urlTitle = title.replace(/ /g, "-");
+  // const urlTitle = title.replace(/ /g, "-");
+  const urlTitle = "The-Medita";
+  const { pathname: path, search: queries } = useLocation();
 
   return (
     <div className="info-card">

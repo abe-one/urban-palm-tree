@@ -14,6 +14,7 @@ const Lots = ({ data, toggleSavedStatus, mainGrid, displayAll }) => {
             return (
               <InfoCard
                 key={lotId}
+                id={lotId}
                 stateKey="lots"
                 headerImg={image}
                 title={address}

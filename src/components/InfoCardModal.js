@@ -5,7 +5,11 @@ import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import InfoCard from "./InfoCard";
 import HomePlans from "./HomePlans";
-import { toggleSavedHomePlans } from "../utils/reduxStore/actions";
+import {
+  toggleSavedHomePlans,
+  toggleSavedLots,
+} from "../utils/reduxStore/actions";
+import Lots from "./Lots";
 
 const InfoCardModal = (props) => {
   const {
@@ -14,7 +18,7 @@ const InfoCardModal = (props) => {
     combinations,
     path,
     primaryCardProps: {
-      key,
+      id,
       headerImg,
       title,
       details,
@@ -29,12 +33,20 @@ const InfoCardModal = (props) => {
   ReactModal.setAppElement("#root"); //Selects entire page to hide from screen readers
   const { push } = useHistory();
 
-  let compatibilityList;
+  let compatibles;
+  let data;
   if (stateKey === "lots") {
-    compatibilityList = homePlans.data;
+    compatibles = combinations.filter((combo) => combo.lotId === id);
+    compatibles = new Set(compatibles.map((combo) => combo.homePlanId));
+
+    data = homePlans.data.filter((plan) => compatibles.has(plan.homePlanId));
   } else {
-    compatibilityList = lots.data;
+    compatibles = combinations.filter((combo) => combo.homePlanId === id);
+    compatibles = new Set(compatibles.map((combo) => combo.lotId));
+
+    data = lots.data.filter((lot) => compatibles.has(lot.lotId));
   }
+  console.log(data);
 
   return (
     <ReactModal
@@ -46,7 +58,7 @@ const InfoCardModal = (props) => {
       }}
     >
       <InfoCard
-        key={key}
+        key={id}
         stateKey={stateKey}
         tags={tags}
         headerImg={headerImg}
@@ -62,13 +74,19 @@ const InfoCardModal = (props) => {
       <h3>Compatible {stateKey}</h3>
       {/*TODO regex formatting*/}
 
-      {
+      {stateKey === homePlans ? (
         <HomePlans
-          data={homePlans.data}
+          data={data}
+          toggleSavedStatus={toggleSavedLots}
+          displayAll={true}
+        />
+      ) : (
+        <Lots
+          data={data}
           toggleSavedStatus={toggleSavedHomePlans}
           displayAll={true}
         />
-      }
+      )}
     </ReactModal>
   );
 };
@@ -77,7 +95,7 @@ const mapStateToProps = (state) => {
   return {
     lots: state.lots,
     homePlans: state.homePlans,
-    combinations: state.combinations,
+    combinations: state.combinations.data,
   };
 };
 

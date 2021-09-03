@@ -26,6 +26,7 @@ const HomePlans = ({ data, toggleSavedStatus, mainGrid, displayAll }) => {
             return (
               <InfoCard
                 key={homePlanId}
+                id={homePlanId}
                 stateKey="homePlans"
                 headerImg={image}
                 title={name}

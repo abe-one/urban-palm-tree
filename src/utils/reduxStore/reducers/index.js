@@ -72,15 +72,11 @@ export const reducer = (state = initialState, action) => {
       };
 
     case FETCH_COMBINATIONS_SUCCESS:
-      const fetchedCombinations = action.payload.map((combo) => {
-        const fetchedCombo = { ...combo, saved: false };
-        return fetchedCombo;
-      });
       return {
         ...state,
-        homeCombinations: {
-          ...state.homeCombinations,
-          data: fetchedCombinations,
+        combinations: {
+          ...state.combinations,
+          data: action.payload,
           errorMessage: "",
           apiCallStatus: "successful",
         },
