@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { toggleSavedHomePlans } from "../utils/reduxStore/actions";
 import InfoCard from "./InfoCard";
 
 const HomePlans = ({ homePlans, toggleSavedHomePlans }) => {
+  const [displayAll, setDisplayAll] = useState(true);
   return (
     <>
-      <h2>Home Plans</h2>
+      <button onClick={() => setDisplayAll(!displayAll)}>
+        Show {displayAll ? "Saved" : "All"} Lots
+      </button>
       <div
         style={{
           display: "flex",
@@ -28,20 +31,23 @@ const HomePlans = ({ homePlans, toggleSavedHomePlans }) => {
             index
           ) => {
             const detailsString = `${numBeds} bed(s) - ${numBaths} bath(s) - ${sqft} sqft`; //Todo: Conditional plurals on bed/bath
-
-            return (
-              <InfoCard
-                key={homePlanId}
-                headerImg={image}
-                title={name}
-                details={detailsString}
-                tags={tags}
-                description={description}
-                savedStatus={saved}
-                toggleSavedStatus={toggleSavedHomePlans}
-                index={index}
-              />
-            );
+            if (!displayAll && !saved) {
+              return null;
+            } else {
+              return (
+                <InfoCard
+                  key={homePlanId}
+                  headerImg={image}
+                  title={name}
+                  details={detailsString}
+                  tags={tags}
+                  description={description}
+                  savedStatus={saved}
+                  toggleSavedStatus={toggleSavedHomePlans}
+                  index={index}
+                />
+              );
+            }
           }
         )}
       </div>

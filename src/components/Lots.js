@@ -17,9 +17,8 @@ const Lots = ({ lots, toggleSavedLots }) => {
       >
         {lots.data.map(
           ({ lotId, address, acres, description, image, saved }, index) => {
-            const detailsString = `${address} \n ${acres} - ${
-              acres * 43_560
-            } sqft`;
+            const detailsString = `${acres} - ${acres * 43_560} sqft`;
+            //TODO: Split address at comma
             if (!displayAll && !saved) {
               return null;
             } else {
@@ -27,6 +26,7 @@ const Lots = ({ lots, toggleSavedLots }) => {
                 <InfoCard
                   key={lotId}
                   headerImg={image}
+                  title={address}
                   details={detailsString}
                   description={description}
                   savedStatus={saved}

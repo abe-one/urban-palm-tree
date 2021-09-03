@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import ReactModal from "react-modal";
+import { useHistory, Link, Route, useLocation } from "react-router-dom";
 
 const InfoCard = ({
   headerImg,
@@ -10,6 +12,11 @@ const InfoCard = ({
   toggleSavedStatus,
   index,
 }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const { pathname: path, search: queries } = useLocation();
+  const { push } = useHistory();
+
   return (
     <div className="info-card">
       <div
@@ -36,7 +43,9 @@ const InfoCard = ({
         </button>
       </div>
 
-      <h3>{title}</h3>
+      <Link to={`/lots?a`}>
+        <h3>{title}</h3>
+      </Link>
       <p>{details}</p>
       {/*TODO: p tags for each line break */}
 
@@ -49,6 +58,16 @@ const InfoCard = ({
         <p>{description}</p>
         {/*TODO: p tags for each line break */}
       </div>
+      {queries === "?a" ? (
+        <ReactModal
+          isOpen={!modalOpen}
+          shouldCloseOnOverlayClick={true}
+          shouldCloseOnEsc={true}
+          onRequestClose={() => {
+            push(path);
+          }}
+        ></ReactModal>
+      ) : null}
     </div>
   );
 };
