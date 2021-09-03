@@ -25,6 +25,7 @@ const Lots = ({ lots, toggleSavedLots }) => {
               return (
                 <InfoCard
                   key={lotId}
+                  dataType="lots"
                   headerImg={image}
                   title={address}
                   details={detailsString}
