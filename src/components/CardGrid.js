@@ -5,7 +5,6 @@ import {
   toggleSavedHomePlans,
 } from "../utils/reduxStore/actions";
 import HomePlans from "./HomePlans";
-import InfoCard from "./InfoCard";
 import Lots from "./Lots";
 const CardGrid = ({
   lots,
