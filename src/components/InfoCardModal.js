@@ -38,13 +38,17 @@ const InfoCardModal = (props) => {
   if (stateKey === "lots") {
     compatibles = combinations.filter((combo) => combo.lotId === id);
     compatibles = new Set(compatibles.map((combo) => combo.homePlanId));
+    // console.log("homes", compatibles);
 
     data = homePlans.data.filter((plan) => compatibles.has(plan.homePlanId));
+    console.log(("homes", data));
   } else {
     compatibles = combinations.filter((combo) => combo.homePlanId === id);
     compatibles = new Set(compatibles.map((combo) => combo.lotId));
+    // console.log("lots", compatibles);
 
     data = lots.data.filter((lot) => compatibles.has(lot.lotId));
+    console.log(("lots", data));
   }
   console.log(data);
 
@@ -71,19 +75,19 @@ const InfoCardModal = (props) => {
       ></InfoCard>
 
       <hr />
-      <h3>Compatible {stateKey}</h3>
+      <h3>Compatible {stateKey === "lots" ? "Home Plans" : "Lots"}</h3>
       {/*TODO regex formatting*/}
 
-      {stateKey === homePlans ? (
+      {stateKey === "lots" ? (
         <HomePlans
           data={data}
-          toggleSavedStatus={toggleSavedLots}
+          toggleSavedStatus={toggleSavedHomePlans}
           displayAll={true}
         />
       ) : (
         <Lots
           data={data}
-          toggleSavedStatus={toggleSavedHomePlans}
+          toggleSavedStatus={toggleSavedLots}
           displayAll={true}
         />
       )}

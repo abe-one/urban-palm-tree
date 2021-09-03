@@ -10,7 +10,6 @@ import reportWebVitals from "./reportWebVitals";
 import { reducer } from "./utils/reduxStore/reducers";
 
 const store = createStore(reducer, applyMiddleware(logger));
-console.log(store.getState());
 
 render(
   <Provider store={store}>

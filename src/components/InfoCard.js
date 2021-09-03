@@ -13,10 +13,11 @@ const InfoCard = (props) => {
     toggleSavedStatus,
     index,
     gridCard,
+    stateKey,
   } = props;
 
-  // const urlTitle = title.replace(/ /g, "-");
-  const urlTitle = "The-Medita";
+  const urlTitle = title?.replace(/ /g, "-");
+
   const { pathname: path, search: queries } = useLocation();
 
   return (
@@ -66,14 +67,18 @@ const InfoCard = (props) => {
         {/*TODO: p tags for each line break */}
       </div>
 
-      {gridCard ? (
-        queries === `?selected=${urlTitle}` ? (
-          <InfoCardModal
-            path={path}
-            primaryCardProps={props}
-            stateKey={"homePlans"}
-          />
-        ) : null
+      {gridCard &&
+      queries === `?selected=${urlTitle}` &&
+      stateKey === "homePlans" ? (
+        <InfoCardModal
+          path={path}
+          primaryCardProps={props}
+          stateKey={stateKey}
+        />
+      ) : gridCard &&
+        queries === `?selected=${urlTitle}` &&
+        stateKey === "lots" ? (
+        <InfoCardModal path={path} primaryCardProps={props} stateKey={"lots"} />
       ) : null}
     </div>
   );
