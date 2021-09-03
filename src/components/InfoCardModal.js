@@ -4,9 +4,14 @@ import ReactModal from "react-modal";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import InfoCard from "./InfoCard";
+import HomePlans from "./HomePlans";
+import { toggleSavedHomePlans } from "../utils/reduxStore/actions";
 
 const InfoCardModal = (props) => {
   const {
+    lots,
+    homePlans,
+    combinations,
     path,
     primaryCardProps: {
       key,
@@ -19,10 +24,17 @@ const InfoCardModal = (props) => {
       toggleSavedStatus,
       index,
       stateKey,
-      gridCard,
     },
   } = props;
+  ReactModal.setAppElement("#root"); //Selects entire page to hide from screen readers
   const { push } = useHistory();
+
+  let compatibilityList;
+  if (stateKey === "lots") {
+    compatibilityList = homePlans.data;
+  } else {
+    compatibilityList = lots.data;
+  }
 
   return (
     <ReactModal
@@ -33,19 +45,30 @@ const InfoCardModal = (props) => {
         push(path);
       }}
     >
-      <div>
-        <InfoCard
-          key={key}
-          stateKey={stateKey}
-          tags={tags}
-          headerImg={headerImg}
-          title={title}
-          details={details}
-          description={description}
-          savedStatus={savedStatus}
-          index={index}
-        ></InfoCard>
-      </div>
+      <InfoCard
+        key={key}
+        stateKey={stateKey}
+        tags={tags}
+        headerImg={headerImg}
+        title={title}
+        details={details}
+        toggleSavedStatus={toggleSavedStatus}
+        description={description}
+        savedStatus={savedStatus}
+        index={index}
+      ></InfoCard>
+
+      <hr />
+      <h3>Compatible {stateKey}</h3>
+      {/*TODO regex formatting*/}
+
+      {
+        <HomePlans
+          data={homePlans.data}
+          toggleSavedStatus={toggleSavedHomePlans}
+          displayAll={true}
+        />
+      }
     </ReactModal>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { toggleSavedLots } from "../utils/reduxStore/actions";
 import InfoCard from "./InfoCard";
-const Lots = ({ lots, toggleSavedLots }) => {
+const Lots = ({ lots, toggleSavedLots, mainGrid }) => {
   const [displayAll, setDisplayAll] = useState(true);
 
   return (
@@ -25,7 +25,7 @@ const Lots = ({ lots, toggleSavedLots }) => {
               return (
                 <InfoCard
                   key={lotId}
-                  stateKey="lotId"
+                  stateKey="lots"
                   headerImg={image}
                   title={address}
                   details={detailsString}
@@ -33,7 +33,7 @@ const Lots = ({ lots, toggleSavedLots }) => {
                   savedStatus={saved}
                   toggleSavedStatus={toggleSavedLots}
                   index={index}
-                  gridCard={true}
+                  gridCard={mainGrid}
                 />
               );
             }

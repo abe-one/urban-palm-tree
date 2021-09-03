@@ -17,6 +17,7 @@ const InfoCard = (props) => {
     gridCard,
   } = props;
   const { pathname: path, search: queries } = useLocation();
+
   const urlTitle = title.replace(/ /g, "-");
 
   return (
@@ -68,7 +69,11 @@ const InfoCard = (props) => {
 
       {gridCard ? (
         queries === `?selected=${urlTitle}` ? (
-          <InfoCardModal path={path} primaryCardProps={props} />
+          <InfoCardModal
+            path={path}
+            primaryCardProps={props}
+            stateKey={"homePlans"}
+          />
         ) : null
       ) : null}
     </div>

@@ -8,6 +8,7 @@ import {
   fetchHomePlans,
   fetchCombinations,
 } from "./utils/reduxStore/actions";
+import CardGrid from "./components/CardGrid";
 
 function App({ fetchLots, fetchHomePlans, fetchCombinations }) {
   useEffect(() => {
@@ -28,10 +29,10 @@ function App({ fetchLots, fetchHomePlans, fetchCombinations }) {
       </header>
       <Switch>
         <Route path={"/homes"}>
-          <HomePlans />
+          <CardGrid stateKey="homePlans" />
         </Route>
         <Route path="/lots">
-          <Lots />
+          <CardGrid stateKey="lots" />
         </Route>
       </Switch>
     </div>

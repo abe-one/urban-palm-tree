@@ -1,64 +1,48 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { toggleSavedHomePlans } from "../utils/reduxStore/actions";
+import React from "react";
 import InfoCard from "./InfoCard";
 
-const HomePlans = ({ homePlans, toggleSavedHomePlans }) => {
-  const [displayAll, setDisplayAll] = useState(true);
+const HomePlans = ({ data, toggleSavedStatus, mainGrid, displayAll }) => {
   return (
     <>
-      <button onClick={() => setDisplayAll(!displayAll)}>
-        Show {displayAll ? "Saved" : "All"} Lots
-      </button>
-      <div
-        style={{
-          display: "flex",
-        }}
-      >
-        {homePlans.data.map(
-          (
-            {
-              homePlanId,
-              name,
-              numBeds,
-              numBaths,
-              sqft,
-              tags,
-              description,
-              image,
-              saved,
-            },
-            index
-          ) => {
-            const detailsString = `${numBeds} bed(s) - ${numBaths} bath(s) - ${sqft} sqft`; //Todo: Conditional plurals on bed/bath
-            if (!displayAll && !saved) {
-              return null;
-            } else {
-              return (
-                <InfoCard
-                  key={homePlanId}
-                  stateKey="homePlanId"
-                  headerImg={image}
-                  title={name}
-                  details={detailsString}
-                  tags={tags}
-                  description={description}
-                  savedStatus={saved}
-                  toggleSavedStatus={toggleSavedHomePlans}
-                  index={index}
-                  gridCard={true}
-                />
-              );
-            }
+      {data.map(
+        (
+          {
+            homePlanId,
+            name,
+            numBeds,
+            numBaths,
+            sqft,
+            tags,
+            description,
+            image,
+            saved,
+          },
+          index
+        ) => {
+          const detailsString = `${numBeds} bed(s) - ${numBaths} bath(s) - ${sqft} sqft`; //Todo: Conditional plurals on bed/bath
+          if (!displayAll && !saved) {
+            return null;
+          } else {
+            return (
+              <InfoCard
+                key={homePlanId}
+                stateKey="homePlans"
+                headerImg={image}
+                title={name}
+                details={detailsString}
+                tags={tags}
+                description={description}
+                savedStatus={saved}
+                toggleSavedStatus={toggleSavedStatus}
+                index={index}
+                gridCard={mainGrid}
+              />
+            );
           }
-        )}
-      </div>
+        }
+      )}
     </>
   );
 };
 
-const mapStateToProps = (state) => {
-  return { homePlans: state.homePlans };
-};
-
-export default connect(mapStateToProps, { toggleSavedHomePlans })(HomePlans);
+export default HomePlans;
