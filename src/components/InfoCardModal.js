@@ -45,12 +45,10 @@ const InfoCardModal = (props) => {
   } else {
     compatibles = combinations.filter((combo) => combo.homePlanId === id);
     compatibles = new Set(compatibles.map((combo) => combo.lotId));
-    // console.log("lots", compatibles);
 
     data = lots.data.filter((lot) => compatibles.has(lot.lotId));
     console.log(("lots", data));
   }
-  console.log(data);
 
   return (
     <ReactModal
@@ -76,7 +74,6 @@ const InfoCardModal = (props) => {
 
       <hr />
       <h3>Compatible {stateKey === "lots" ? "Home Plans" : "Lots"}</h3>
-      {/*TODO regex formatting*/}
 
       {stateKey === "lots" ? (
         <HomePlans

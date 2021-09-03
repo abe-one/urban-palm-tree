@@ -33,6 +33,7 @@
 - The query parameters appear and disappear with the modal
 - Links are shareable
 - Currently the query parameters relate to the title of the lots/plans, while the text prompts indicated Ids, the figma path indicated names, I selected names because of the emphasis on sharing
+- Further development would include the parsing of query strings into objects each query for use in search, and likely the replacement of `selected` query parameter with a simple parameter `/:selectedId`
 
 ### Saving
 
