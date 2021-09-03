@@ -38,5 +38,3 @@
 
 - Each lot/plan card includes a heart which will update the corresponding object in state with a `saved` boolean
 - Currently there is a bug that prevent saving items when they are rendered in the compatible div, I believe this is a bug in my structure for reusing the card components
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
