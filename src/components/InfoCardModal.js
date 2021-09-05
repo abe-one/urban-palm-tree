@@ -17,6 +17,8 @@ const InfoCardModal = (props) => {
     homePlans,
     combinations,
     path,
+    toggleSavedLots,
+    toggleSavedHomePlans,
     primaryCardProps: {
       id,
       headerImg,
@@ -80,12 +82,14 @@ const InfoCardModal = (props) => {
           data={data}
           toggleSavedStatus={toggleSavedHomePlans}
           displayAll={true}
+          mainGrid={true}
         />
       ) : (
         <Lots
           data={data}
           toggleSavedStatus={toggleSavedLots}
           displayAll={true}
+          mainGrid={true}
         />
       )}
     </ReactModal>
@@ -100,4 +104,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(InfoCardModal);
+export default connect(mapStateToProps, {
+  toggleSavedLots,
+  toggleSavedHomePlans,
+})(InfoCardModal);
