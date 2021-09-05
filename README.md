@@ -3,7 +3,7 @@
 ## Tech Stack
 
 - React as SPA framework
-
+- react-modal as template for modal functionality
 - Redux as global state manager
 
 ## Functionality
@@ -21,10 +21,11 @@
 
 ### Basic Layout
 
-- Each card contains a link which opens a modal displaying compatible plans/lots for that card
-- The modals are ARIA compliant
-- Further development would involve wrapping the entire card in a Link and stopping propogation at the heart button
+- Each card is link which opens a modal displaying compatible plans/lots for that card
+- The modals are ARIA compliant, images are not
+- Further development would involve preventing the heart button click from flashing the link color of the card
 - Currently the nav bar does not highlight the active page, further development would involve highlighting based on the url path
+- Further development would involve careful renaming and elimination of certain components and props, such as `CardGrid` and `gridCard`
 
 ### Query Parameters
 
@@ -37,5 +38,4 @@
 
 ### Saving
 
-- Each lot/plan card includes a heart which will update the corresponding object in state with a `saved` boolean
-- Currently there is a bug that prevent saving items when they are rendered in the compatible div, I believe this is a bug in my structure for reusing the card components
+- Each lot/plan card includes a heart which will update the corresponding object in state with a `saved` boolean both on the main page and in the modal
