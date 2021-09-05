@@ -22,6 +22,7 @@ const InfoCard = (props) => {
 
   return (
     <div className="info-card">
+      {/* <Link to={`${path}?selected=${urlTitle}`}> */}
       <div
         className="header-image"
         title={title}
@@ -34,7 +35,8 @@ const InfoCard = (props) => {
         }}
       >
         <button
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             toggleSavedStatus(index);
           }}
           style={{
@@ -45,14 +47,15 @@ const InfoCard = (props) => {
           {savedStatus ? "❤️" : "🤍"}
         </button>
       </div>
+      {/* </Link> */}
 
-      {gridCard ? (
+      {/* {gridCard ? (
         <Link to={`${path}?selected=${urlTitle}`}>
           <h3>{title}</h3>
         </Link>
-      ) : (
-        <h3>{title}</h3>
-      )}
+      ) : ( */}
+      <h3>{title}</h3>
+      {/* )} */}
 
       <p>{details}</p>
       {/*TODO: p tags for each line break */}
@@ -67,7 +70,7 @@ const InfoCard = (props) => {
         {/*TODO: p tags for each line break */}
       </div>
 
-      {gridCard &&
+      {/* {gridCard &&
       queries === `?selected=${urlTitle}` &&
       stateKey === "homePlans" ? (
         <InfoCardModal
@@ -79,7 +82,7 @@ const InfoCard = (props) => {
         queries === `?selected=${urlTitle}` &&
         stateKey === "lots" ? (
         <InfoCardModal path={path} primaryCardProps={props} stateKey={"lots"} />
-      ) : null}
+      ) : null} */}
     </div>
   );
 };
