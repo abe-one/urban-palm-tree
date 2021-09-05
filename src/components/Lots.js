@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import ConditionalLink from "./ConditionalLink";
 import InfoCard from "./InfoCard";
 import InfoCardModal from "./InfoCardModal";
@@ -13,13 +13,14 @@ const Lots = ({ data, toggleSavedStatus, mainGrid, displayAll }) => {
         ({ lotId, address, acres, description, image, saved }, index) => {
           const detailsString = `${acres} - ${acres * 43_560} sqft`;
           //TODO: Split address at comma
+
           if (!displayAll && !saved) {
             return null;
           } else {
             const cardProps = {
               key: lotId,
               id: lotId,
-              stateKe: "lots",
+              stateKey: "lots",
               headerImg: image,
               title: address,
               details: detailsString,

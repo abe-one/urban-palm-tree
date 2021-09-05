@@ -1,6 +1,4 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import InfoCardModal from "./InfoCardModal";
 
 const InfoCard = (props) => {
   const {
@@ -12,17 +10,10 @@ const InfoCard = (props) => {
     savedStatus,
     toggleSavedStatus,
     index,
-    gridCard,
-    stateKey,
   } = props;
-
-  const urlTitle = title?.replace(/ /g, "-");
-
-  const { pathname: path, search: queries } = useLocation();
 
   return (
     <div className="info-card">
-      {/* <Link to={`${path}?selected=${urlTitle}`}> */}
       <div
         className="header-image"
         title={title}
@@ -47,15 +38,8 @@ const InfoCard = (props) => {
           {savedStatus ? "❤️" : "🤍"}
         </button>
       </div>
-      {/* </Link> */}
 
-      {/* {gridCard ? (
-        <Link to={`${path}?selected=${urlTitle}`}>
-          <h3>{title}</h3>
-        </Link>
-      ) : ( */}
       <h3>{title}</h3>
-      {/* )} */}
 
       <p>{details}</p>
       {/*TODO: p tags for each line break */}
@@ -69,20 +53,6 @@ const InfoCard = (props) => {
         <p>{description}</p>
         {/*TODO: p tags for each line break */}
       </div>
-
-      {/* {gridCard &&
-      queries === `?selected=${urlTitle}` &&
-      stateKey === "homePlans" ? (
-        <InfoCardModal
-          path={path}
-          primaryCardProps={props}
-          stateKey={stateKey}
-        />
-      ) : gridCard &&
-        queries === `?selected=${urlTitle}` &&
-        stateKey === "lots" ? (
-        <InfoCardModal path={path} primaryCardProps={props} stateKey={"lots"} />
-      ) : null} */}
     </div>
   );
 };
