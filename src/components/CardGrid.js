@@ -18,7 +18,8 @@ const CardGrid = ({
   return (
     <>
       <button onClick={() => setDisplayAll(!displayAll)}>
-        Show {displayAll ? "Saved" : "All"} Lots
+        Show {displayAll ? "Saved" : "All"}{" "}
+        {stateKey === "lots" ? "Lots" : "Home Plans"}
       </button>
 
       <div
