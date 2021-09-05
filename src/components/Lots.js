@@ -36,7 +36,7 @@ const Lots = ({ data, toggleSavedStatus, mainGrid, displayAll }) => {
               <>
                 <ConditionalLink
                   isLink={mainGrid}
-                  queryPath={`${path}?selected=${urlTitle}`}
+                  queryPath={`/lots?selected=${urlTitle}`}
                   innerComponent={<InfoCard {...cardProps} />}
                 />
                 {queries === `?selected=${urlTitle}` ? (

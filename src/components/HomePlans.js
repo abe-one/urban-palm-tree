@@ -50,7 +50,7 @@ const HomePlans = ({ data, toggleSavedStatus, mainGrid, displayAll }) => {
               <>
                 <ConditionalLink
                   isLink={mainGrid}
-                  queryPath={`${path}?selected=${urlTitle}`}
+                  queryPath={`/homes?selected=${urlTitle}`}
                   innerComponent={<InfoCard {...cardProps} />}
                 />
                 {queries === `?selected=${urlTitle}` ? (

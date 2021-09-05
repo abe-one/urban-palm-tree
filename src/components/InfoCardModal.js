@@ -80,12 +80,14 @@ const InfoCardModal = (props) => {
           data={data}
           toggleSavedStatus={toggleSavedHomePlans}
           displayAll={true}
+          mainGrid={true}
         />
       ) : (
         <Lots
           data={data}
           toggleSavedStatus={toggleSavedLots}
           displayAll={true}
+          mainGrid={true}
         />
       )}
     </ReactModal>
